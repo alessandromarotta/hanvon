@@ -1,40 +1,35 @@
-Hanvon tablet driver
-====================
+# Hanvon Tablet Drivers
 
-Driver for Linux kernels which supports complete functionality of the tablet:
-pen coordinates, touch/float/click detection, pressure, x and y tilt, pen
-button. On Artmaster I four simple tablet buttons (note that the first
-one works only together with pen activity), and the slider button.
+Userspace driver for Hanvon pen tablets adapted from the original Linux kernel driver. Supports tablet features such as pen coordinates, x and y tilt angle, hover detection, pressure detection, and button input.
 
+## Dependencies
+apt install cmake pkg-config make libusb-1.0.0-dev libevdev-dev 
 
-Supported hardware
-==================
+## Building
+    cd build
+    cmake ..
+    make
 
-AM3M, AM0605, AM0806, AM1107, AM1209
-RL0604, RL0504
-GP0504, GP0605, GP0605+, GP0806, GP0906
-NXS1315
-APPIV0906
+## Usage
+    sudo ./hvlusb
 
-AM - Artmaster I, RL - Rollick, GP - GraphicPal, NXS - Nilox
-APP - Art Painter Pro
+Run the output executable from a terminal with sudo (preferrably in the background).
 
+## Supported Hardware
 
-Installation
-============
+All tablets supported by the original driver should work, but only GP0504 on Ubuntu 24.04 has been tested
 
-Type 'make' to compile the module. New file hanvon.ko will be produced in
-current directory. Load the module with root permissions
+The original driver supported the following models:
 
-insmod ./hanvon.ko
+ArtMaster: AM3M, AM0605, AM0806, AM1107, AM1209
 
-If everything goes right the tablet should start working immediately.
+Rollick: RL0604, RL0504
 
+GraphicPal: GP0504, GP0605, GP0605+, GP0806, GP0906
 
-Diagnostics
-===========
+Nilox: NXS1315
 
-After insmod, check with dmesg, if the module was loaded properly.  
-"USB Hanvon tablet driver" should appear in the listing.
+Art Painter Pro: APPIV0906
+__________________
 
-lsmod should also contain hanvon in its listing: lsmod | grep hanvon
+forked from: https://github.com/ondrah/hanvon
